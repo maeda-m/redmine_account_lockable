@@ -43,7 +43,16 @@ Then, remove `plugins/redmine_account_lockable` directory.
 
 ### How to test
 
-TODO
+```
+$ cd /path/to/your-redmine
+$ rake db:create RAILS_ENV=test
+$ rake db:migrate RAILS_ENV=test
+$ rake redmine:plugins:migrate RAILS_ENV=test NAME=redmine_account_lockable
+$ rake redmine:plugins:test NAME=redmine_account_lockable
+# => rake redmine:plugins:test:functionals NAME=redmine_account_lockable
+# => rake redmine:plugins:test:integration NAME=redmine_account_lockable
+# => rake redmine:plugins:test:units NAME=redmine_account_lockable
+```
 
 ### Pull Request
 

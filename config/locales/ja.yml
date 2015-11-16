@@ -14,4 +14,4 @@ ja:
   note_allow_failed_attempts: "1以上を指定してください"
 
   text_account_locked_subject: "%{user}のアカウントをロックしました"
-  text_account_locked_description: ログイン失敗回数が一定回数を超えたためアカウントをロックしました
+  text_account_locked_description: ログイン失敗回数が一定回数を超えたためアカウントをロックしました。

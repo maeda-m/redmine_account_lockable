@@ -8,7 +8,7 @@ Redmine::Plugin.register :redmine_account_lockable do
 
   settings(partial: 'settings/form',
     default: {
-      allow_failed_attempts: LoginLog::DEFAULT_ALLOW_FAILED_ATTEMPTS
+      allow_failed_attempts: 5
     })
 end
 

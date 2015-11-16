@@ -1,0 +1,17 @@
+en:
+  lable_last: Last time
+  lable_current: This time
+
+  lable_failed_login_at: Failed login at
+  lable_failed_login_ip: Failed login ip
+  lable_sign_in_at: Successful login at
+  lable_sign_in_ip: Successful login ip
+  lable_account_locked_at: Account locked at
+
+  label_allow_failed_attempts: allowable count of failed login attempts
+  label_default_allow_failed_attempts: "Default: up to 5 times"
+
+  note_allow_failed_attempts: "It must be greater than or equal to 1"
+
+  text_account_locked_subject: "Locked the account of %{user}"
+  text_account_locked_description: Login failure count locked the account because it exceeded a certain number of times.
