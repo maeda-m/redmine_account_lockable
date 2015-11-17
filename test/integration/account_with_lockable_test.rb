@@ -22,7 +22,7 @@ class AccountWithLockableTest < Redmine::IntegrationTest
       with_settings(allow_failed_attempts_2) do
         # 1st, 2nd, 3rd => Failed(Locked)
         assert_try_login(user, times: 3, locked_times: :last)
-        assert_mail_to_locked_account(user, addresses[i])
+        assert_equal_mail_to_locked_account(user, addresses[i])
       end
     end
   end
@@ -39,14 +39,36 @@ class AccountWithLockableTest < Redmine::IntegrationTest
     [normal_user, admin_user].each_with_index do |user, i|
       with_settings(allow_failed_attempts_2) do
         # 1st, 2nd => Failed
-        assert_try_login(user, times: 2)
+        assert_try_login(user, times: 2, locked_times: :none)
         # 3rd => Success
         assert_try_login(user, password: user.login)
         post '/logout'
         # 4th, 5th, 6th => Failed(Locked)
         assert_try_login(user, times: 3, locked_times: :last)
-        assert_mail_to_locked_account(user, addresses[i])
+        assert_equal_mail_to_locked_account(user, addresses[i])
       end
+    end
+  end
+
+  def test_registered_account_of_password_login_user_ignored
+    registered_user = User.active.find_by_login('miscuser8')
+    registered_user.update(status: User::STATUS_REGISTERED)
+
+    with_settings(allow_failed_attempts_2) do
+      # 1st, 2nd, 3rd => Failed(Ignored)
+      assert_try_login(registered_user, times: 3, locked_times: :none)
+      assert_not_equal_mail_to_locked_account(registered_user)
+    end
+  end
+
+  def test_locked_account_of_password_login_user_ignored
+    locked_user = User.active.find_by_login('miscuser9')
+    locked_user.update(status: User::STATUS_LOCKED)
+
+    with_settings(allow_failed_attempts_2) do
+      # 1st, 2nd, 3rd => Failed(Ignored)
+      assert_try_login(locked_user, times: 3, locked_times: :all)
+      assert_not_equal_mail_to_locked_account(locked_user)
     end
   end
 
