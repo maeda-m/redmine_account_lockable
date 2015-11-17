@@ -48,6 +48,7 @@ $ cd /path/to/your-redmine
 $ rake db:create RAILS_ENV=test
 $ rake db:migrate RAILS_ENV=test
 $ rake redmine:plugins:migrate RAILS_ENV=test NAME=redmine_account_lockable
+$ rake redmine:load_default_data RAILS_ENV=test
 $ rake redmine:plugins:test NAME=redmine_account_lockable
 # => rake redmine:plugins:test:functionals NAME=redmine_account_lockable
 # => rake redmine:plugins:test:integration NAME=redmine_account_lockable
