@@ -33,17 +33,17 @@ module AccountLockable
       end
     end
 
-    def assert_mail_to_locked_account(locked_user)
+    def assert_mail_to_locked_account(locked_user, address)
       mail = ActionMailer::Base.deliveries.last
 
-      to_address = [ locked_user.mail ]
-      cc_address = User.active.where(admin: true).map(&:mail)
-      bcc_address = nil
-
       if Setting.bcc_recipients?
-        bcc_address = (to_address + cc_address).uniq
+        bcc_address = (address[:to] + address[:cc]).uniq
         to_address = nil
         cc_address = nil
+      else
+        to_address = address[:to]
+        cc_address = address[:cc]
+        bcc_address = nil
       end
 
       assert_not_nil mail
