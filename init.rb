@@ -3,6 +3,7 @@ Redmine::Plugin.register :redmine_account_lockable do
   author 'maeda-m'
   description 'Plug-in that automatically lock the account in the count of failed logins.'
   version '1.0.0'
+  requires_redmine version_or_higher: '3.1.0'
   url 'https://github.com/maeda-m/redmine_account_lockable'
   author_url 'https://github.com/maeda-m'
 
